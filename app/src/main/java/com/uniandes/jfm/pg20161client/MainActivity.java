@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.json.JSONObject;
 
@@ -21,7 +22,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new TareaRed().execute();
     }
 
     private class TareaRed extends AsyncTask<URL, Integer, Long> {
@@ -38,9 +38,12 @@ public class MainActivity extends ActionBarActivity {
                 con.setRequestMethod("POST");
 
                 JSONObject objetoJSON = new JSONObject();
+                System.out.println("Objeto a mandar:");
 
                 objetoJSON.put("codigo", "Cod1");
                 objetoJSON.put("tiempo", "T1");
+
+                System.out.println(objetoJSON);
 
                 OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
                 wr.write(objetoJSON.toString());
@@ -50,7 +53,11 @@ public class MainActivity extends ActionBarActivity {
 
                 StringBuilder sb = new StringBuilder();
                 int HttpResult = con.getResponseCode();
-                if (HttpResult == HttpURLConnection.HTTP_OK) {
+                System.out.println("Respuesta:");
+                System.out.println(HttpResult);
+                System.out.println("Respuesta esperada:");
+                System.out.println(HttpURLConnection.HTTP_OK);
+                if (HttpResult == HttpURLConnection.HTTP_CREATED) {
                     BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
                     String line = null;
                     while ((line = br.readLine()) != null) {
@@ -59,7 +66,9 @@ public class MainActivity extends ActionBarActivity {
 
                     br.close();
 
+                    System.out.println("- - - - - - - - - - - - - - - - - -");
                     System.out.println("" + sb.toString());
+                    System.out.println("- - - - - - - - - - - - - - - - - -");
 
                 } else {
                     System.out.println(con.getResponseMessage());
@@ -75,6 +84,11 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(Long result) {
             System.out.println("Downloaded " + result + " bytes");
         }
+    }
+
+    public void llamar(View view) {
+        System.out.println("- - - - - - - - BOTON - - - - - - - -");
+        new TareaRed().execute();
     }
 
     @Override
