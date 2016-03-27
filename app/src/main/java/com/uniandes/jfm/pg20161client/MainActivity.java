@@ -24,82 +24,71 @@ appId = "user"
 
 public class MainActivity extends ActionBarActivity {
 
-    public final static String URL_MTC = "192.168.0.25";
+    public final static String URL_MTC = "192.168.0.27";
     public final static String PUERTO_MTC = "4000";
-    public final static String APP_ID = "user00";
+    public final static String APP_ID = "user01";
+    private boolean listaRed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    private class TareaRed extends AsyncTask<URL, Integer, Long> {
-        protected Long doInBackground(URL... urls) {
-            try {
-                //
-                String url = "http://"+URL_MTC+":"+PUERTO_MTC+"/m2m/applications";
-                System.out.println("URL: " + url);
-                URL object = new URL(url);
-
-                HttpURLConnection con = (HttpURLConnection) object.openConnection();
-                con.setDoOutput(true);
-                con.setDoInput(true);
-                con.setRequestProperty("Content-Type", "application/json");
-                //con.setRequestProperty("Accept", "application/json");
-                con.setRequestMethod("POST");
-
-                //JSONObject objetoJSON = new JSONObject();
-                String dataI = "{\"application\":{\"appId\":\""+APP_ID+"\"}}";
-                System.out.println("Objeto a mandar: "+dataI);
-
-                //objetoJSON.put("codigo", "Cod1");
-                //objetoJSON.put("tiempo", "T1");
-
-                OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-                wr.write(dataI);
-                wr.flush();
-
-//display what returns the POST request
-
-                StringBuilder sb = new StringBuilder();
-                int HttpResult = con.getResponseCode();
-                System.out.println("Respuesta:");
-                System.out.println(HttpResult);
-                System.out.println("Respuesta esperada:");
-                System.out.println(HttpURLConnection.HTTP_OK);
-                if (HttpResult == HttpURLConnection.HTTP_CREATED) {
-                    BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
-                    String line = null;
-                    while ((line = br.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-
-                    br.close();
-
-                    System.out.println("- - - - - - - - - - - - - - - - - -");
-                    System.out.println("" + sb.toString());
-                    System.out.println("- - - - - - - - - - - - - - - - - -");
-
-                } else {
-                    System.out.println(con.getResponseMessage());
-                }
-            }
-            catch(Exception e)
-            {
-                System.out.println(e.fillInStackTrace());
-            }
-            return 0L;
-        }
-
-        protected void onPostExecute(Long result) {
-            System.out.println("Downloaded " + result + " bytes");
-        }
+        listaRed = false;
     }
 
     public void llamar(View view) {
         System.out.println("- - - - - - - - BOTON - - - - - - - -");
-        new TareaRed().execute();
+        //Registro
+        //new TareaRed().execute();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    //Crea URL
+                    String url = "http://"+URL_MTC+":"+PUERTO_MTC+"/m2m/applications";
+                    System.out.println("URL: " + url);
+                    URL object = new URL(url);
+                    //Crea Conexion
+                    HttpURLConnection con = (HttpURLConnection) object.openConnection();
+                    con.setDoOutput(true);
+                    con.setDoInput(true);
+                    con.setRequestProperty("Content-Type", "application/json");
+                    con.setRequestMethod("POST");
+                    //Crea JSON
+                    String dataI = "{\"application\":{\"appId\":\""+APP_ID+"\"}}";
+                    System.out.println("Objeto a mandar: "+dataI);
+                    //Manda JSON
+                    OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+                    wr.write(dataI);
+                    wr.flush();
+                    //
+                    //Se recibe
+                    //
+                    StringBuilder sb = new StringBuilder();
+                    int HttpResult = con.getResponseCode();
+                    System.out.println("Respuesta:");
+                    System.out.println(HttpResult);
+                    System.out.println("Respuesta esperada:");
+                    System.out.println(HttpURLConnection.HTTP_OK);
+                    if (HttpResult == HttpURLConnection.HTTP_CREATED) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+                        String line = null;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        System.out.println("- - - - - - - - - - - - - - - - - -");
+                        System.out.println("" + sb.toString());
+                        System.out.println("- - - - - - - - - - - - - - - - - -");
+                    } else {
+                        System.out.println(con.getResponseMessage());
+                    }
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.fillInStackTrace());
+                }
+            }
+        }).start();
     }
 
     @Override
