@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
 
     public final static String URL_MTC = "192.168.0.28";
     public final static String PUERTO_MTC = "4000";
-    public final static String APP_ID = "user01";
+    public final static String APP_ID = "user04";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,47 @@ public class MainActivity extends ActionBarActivity {
                     //Registrar
                     String json = "{\"application\":{\"appId\":\""+APP_ID+"\"}}";
                     String urlAdd = "";
+                    enviarHTTP(urlAdd,json);
+                    //create access rights
+                    json = "{\"accessRight\": {\n" +
+                            "    \"id\": \"ar1\",\n" +
+                            "    \"selfPermissions\": {\"permission\": [{\n" +
+                            "      \"id\": \""+APP_ID+"\",\n" +
+                            "      \"permissionFlags\": {\n" +
+                            "        \"flag\": [\"READ\", \"WRITE\", \"CREATE\", \"DELETE\"]\n" +
+                            "      },\n" +
+                            "      \"permissionHolders\": {\n" +
+                            "        \"applicationIDs\": {\"applicationID\": [\""+APP_ID+"\"]}\n" +
+                            "      }\n" +
+                            "    }, {\n" +
+                            "      \"id\": \"otherApss\",\n" +
+                            "      \"permissionFlags\": {\n" +
+                            "        \"flag\": [\"READ\"]\n" +
+                            "      },\n" +
+                            "      \"permissionHolders\": {\n" +
+                            "        \"applicationIDs\": {\"applicationID\": [\"na1\"]}\n" +
+                            "      }\n" +
+                            "    }]},\n" +
+                            "    \"permissions\": {\"permission\": [{\n" +
+                            "      \"id\": \""+APP_ID+"\",\n" +
+                            "      \"permissionFlags\": {\n" +
+                            "        \"flag\": [\"READ\", \"WRITE\", \"CREATE\", \"DELETE\"]\n" +
+                            "      },\n" +
+                            "      \"permissionHolders\": {\n" +
+                            "       \"applicationIDs\": {\"applicationID\": [\""+APP_ID+"\"]}\n" +
+                            "      }\n" +
+                            "    }, {\n" +
+                            "      \"id\": \"otherApss\",\n" +
+                            "      \"permissionFlags\": {\n" +
+                            "        \"flag\": [\"READ\"]\n" +
+                            "      },\n" +
+                            "      \"permissionHolders\": {\n" +
+                            "        \"applicationIDs\": {\"applicationID\": [\"na1\"]}\n" +
+                            "      }\n" +
+                            "    }]}\n" +
+                            "  }\n" +
+                            "}";
+                    urlAdd = "/"+APP_ID+"/accessRights";
                     enviarHTTP(urlAdd,json);
                 }
                 catch(Exception e)
