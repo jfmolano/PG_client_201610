@@ -15,8 +15,18 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+//Info registro
+/*
+hostDir = "157.253.205.40"
+portNum = "4000"
+appId = "user"
+*/
 
 public class MainActivity extends ActionBarActivity {
+
+    public final static String URL_MTC = "192.168.0.25";
+    public final static String PUERTO_MTC = "4000";
+    public final static String APP_ID = "user00";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,26 +37,27 @@ public class MainActivity extends ActionBarActivity {
     private class TareaRed extends AsyncTask<URL, Integer, Long> {
         protected Long doInBackground(URL... urls) {
             try {
-                String url = "http://157.253.205.33/api/marcas";
+                //
+                String url = "http://"+URL_MTC+":"+PUERTO_MTC+"/m2m/applications";
+                System.out.println("URL: " + url);
                 URL object = new URL(url);
 
                 HttpURLConnection con = (HttpURLConnection) object.openConnection();
                 con.setDoOutput(true);
                 con.setDoInput(true);
                 con.setRequestProperty("Content-Type", "application/json");
-                con.setRequestProperty("Accept", "application/json");
+                //con.setRequestProperty("Accept", "application/json");
                 con.setRequestMethod("POST");
 
-                JSONObject objetoJSON = new JSONObject();
-                System.out.println("Objeto a mandar:");
+                //JSONObject objetoJSON = new JSONObject();
+                String dataI = "{\"application\":{\"appId\":\""+APP_ID+"\"}}";
+                System.out.println("Objeto a mandar: "+dataI);
 
-                objetoJSON.put("codigo", "Cod1");
-                objetoJSON.put("tiempo", "T1");
-
-                System.out.println(objetoJSON);
+                //objetoJSON.put("codigo", "Cod1");
+                //objetoJSON.put("tiempo", "T1");
 
                 OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-                wr.write(objetoJSON.toString());
+                wr.write(dataI);
                 wr.flush();
 
 //display what returns the POST request
