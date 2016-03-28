@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import org.apache.http.localserver.LocalTestServer;
 import org.apache.http.protocol.HttpRequestHandler;
@@ -38,11 +39,15 @@ public class MainActivity extends ActionBarActivity {
     public final static String PUERTO_MTC = "4000";
     public final static String APP_ID = "user04";
     private HttpRequestHandler hand;
+    public int opcion1;
+    public int opcion2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        opcion1 = 0;
+        opcion2 = 0;
     }
 
     public void servHTTP(View view){
@@ -55,6 +60,63 @@ public class MainActivity extends ActionBarActivity {
         }).start();
     }
 
+    public void op1(View view) {
+        if(opcion1==3)
+        {
+            opcion1=0;
+        }
+        opcion1++;
+        if(opcion1==1)//ON
+        {
+            Button mButton=(Button)findViewById(R.id.button_o1);
+            mButton.setText("ON");
+            mButton.setBackgroundColor(0xFF00FF00);
+            System.out.println("Opcion 1 ON");
+        }
+        else if(opcion1==2)//OFF
+        {
+            Button mButton=(Button)findViewById(R.id.button_o1);
+            mButton.setText("OFF");
+            mButton.setBackgroundColor(0xFFFF0000);
+            System.out.println("Opcion 1 OFF");
+        }
+        else//AUTO
+        {
+            Button mButton=(Button)findViewById(R.id.button_o1);
+            mButton.setText("AUTO");
+            mButton.setBackgroundColor(0xFF00BFFF);
+            System.out.println("Opcion 1 AUTO");
+        }
+    }
+
+    public void op2(View view) {
+        if(opcion2==3)
+        {
+            opcion2=0;
+        }
+        opcion2++;
+        if(opcion2==1)//ON
+        {
+            Button mButton=(Button)findViewById(R.id.button_o2);
+            mButton.setText("ON");
+            mButton.setBackgroundColor(0xFF00FF00);
+            System.out.println("Opcion 2 ON");
+        }
+        else if(opcion2==2)//OFF
+        {
+            Button mButton=(Button)findViewById(R.id.button_o2);
+            mButton.setText("OFF");
+            mButton.setBackgroundColor(0xFFFF0000);
+            System.out.println("Opcion 2 OFF");
+        }
+        else//AUTO
+        {
+            Button mButton=(Button)findViewById(R.id.button_o2);
+            mButton.setText("AUTO");
+            mButton.setBackgroundColor(0xFF00BFFF);
+            System.out.println("Opcion 2 AUTO");
+        }
+    }
 
     public void push(View view) {
         System.out.println("- - - - - - - - BOTON - - - - - - - -");
