@@ -1,5 +1,6 @@
 package com.uniandes.jfm.pg20161client;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,12 +8,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.apache.http.localserver.LocalTestServer;
+import org.apache.http.protocol.HttpRequestHandler;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URL;
 
 //Info registro
@@ -24,9 +34,10 @@ appId = "user"
 
 public class MainActivity extends ActionBarActivity {
 
-    public final static String URL_MTC = "192.168.0.28";
+    public final static String URL_MTC = "192.168.0.30";
     public final static String PUERTO_MTC = "4000";
     public final static String APP_ID = "user04";
+    private HttpRequestHandler hand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +45,38 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void llamar(View view) {
+    public void servHTTP(View view){
+        new Thread(new Runnable() {
+            public void run() {
+                System.out.println("Handler");
+                RegisterThread r = new RegisterThread(getBaseContext());
+                r.startThread();
+            }
+        }).start();
+    }
+
+
+    public void push(View view) {
+        System.out.println("- - - - - - - - BOTON - - - - - - - -");
+        //Registro
+        //new TareaRed().execute();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    //Push
+                    String json = "{\"cmd\":\"1\"}";
+                    String urlAdd = "/"+APP_ID+"/containers/cont1/contentInstances";
+                    enviarHTTP(urlAdd,json);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.fillInStackTrace());
+                }
+            }
+        }).start();
+    }
+
+    public void set(View view) {
         System.out.println("- - - - - - - - BOTON - - - - - - - -");
         //Registro
         //new TareaRed().execute();
@@ -85,6 +127,25 @@ public class MainActivity extends ActionBarActivity {
                             "  }\n" +
                             "}";
                     urlAdd = "/"+APP_ID+"/accessRights";
+                    enviarHTTP(urlAdd,json);
+                    //update access rights
+                    //json = "{\"accessRightID\":\"/m2m/applications/"+APP_ID+"/accessRights/ar1\"}";
+                    //urlAdd = "/"+APP_ID+"/accessRightID";;
+                    //enviarHTTP(urlAdd,json);
+
+                    //Actualizar SearchStrings
+                    //json = "{\"searchStrings\":{\"searchString\": [\"user\", \"temperature\"]}}";
+                    //urlAdd = "/"+APP_ID+"/searchStrings";;
+                    //enviarHTTP(urlAdd,json);
+
+                    //Create a container
+                    json = "{\n" +
+                            "  \"container\": {\n" +
+                            "    \"id\": \"cont1\",\n" +
+                            "    \"accessRightID\": \"/m2m/applications/"+APP_ID+"/accessRights/ar1\"\n" +
+                            "  }\n" +
+                            "}";
+                    urlAdd = "/"+APP_ID+"/containers";;
                     enviarHTTP(urlAdd,json);
                 }
                 catch(Exception e)
