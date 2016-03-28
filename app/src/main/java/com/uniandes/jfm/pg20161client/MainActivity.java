@@ -1,13 +1,19 @@
 package com.uniandes.jfm.pg20161client;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.localserver.LocalTestServer;
 import org.apache.http.protocol.HttpRequestHandler;
@@ -41,20 +47,49 @@ public class MainActivity extends ActionBarActivity {
     private HttpRequestHandler hand;
     public int opcion1;
     public int opcion2;
+    MainActivity esta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        esta = this;
         opcion1 = 0;
         opcion2 = 0;
+
+        MyReceiver receiver = new MyReceiver(new Handler()); // Create the receiver
+        registerReceiver(receiver, new IntentFilter("some.action")); // Register receiver
+
+        //sendBroadcast(new Intent("some.action")); // Send an example Intent
+    }
+
+    public class MyReceiver extends BroadcastReceiver {
+
+        private final Handler handler; // Handler used to execute code on the UI thread
+
+        public MyReceiver(Handler handler) {
+            this.handler = handler;
+        }
+
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            // Post the UI updating code to our Handler
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    TextView lab=(TextView)findViewById(R.id.medida1);
+                    lab.setText("Temp. Cocina: "+intent.getStringExtra("valor")+"º");
+                    //Toast.makeText(context, "Toast from broadcast receiver"+intent.getStringExtra("valor"), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     public void servHTTP(View view){
         new Thread(new Runnable() {
             public void run() {
                 System.out.println("Handler");
-                RegisterThread r = new RegisterThread(getBaseContext());
+                RegisterThread r = new RegisterThread(esta);
                 r.startThread();
             }
         }).start();

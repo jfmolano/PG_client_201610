@@ -50,5 +50,11 @@
             android:layout_marginLeft="320dp"
             android:background="#FFFFFF"
             android:onClick="op2" />
+        <TextView
+            android:id="@+id/medida1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temp. Cocina: 2º"
+            />
     </LinearLayout>
 </LinearLayout>
