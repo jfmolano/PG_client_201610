@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -77,8 +79,8 @@ public class MainActivity extends ActionBarActivity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    TextView lab=(TextView)findViewById(R.id.medida1);
-                    lab.setText("Temp. Cocina: "+intent.getStringExtra("valor")+"º");
+                    //TextView lab=(TextView)findViewById(R.id.medida1);
+                    //lab.setText("Temp. Cocina: "+intent.getStringExtra("valor")+"º");
                     //Toast.makeText(context, "Toast from broadcast receiver"+intent.getStringExtra("valor"), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -133,22 +135,30 @@ public class MainActivity extends ActionBarActivity {
         if(opcion2==1)//ON
         {
             Button mButton=(Button)findViewById(R.id.button_o2);
-            mButton.setText("ON");
-            mButton.setBackgroundColor(0xFF00FF00);
+            //mButton.setText("ON");
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.ventiladorv);
+            mButton.setBackground(drawable);
             System.out.println("Opcion 2 ON");
         }
         else if(opcion2==2)//OFF
         {
             Button mButton=(Button)findViewById(R.id.button_o2);
-            mButton.setText("OFF");
-            mButton.setBackgroundColor(0xFFFF0000);
+            //mButton.setText("OFF");
+            //mButton.setBackgroundColor(0xFFFF0000);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.ventiladorr);
+            mButton.setBackground(drawable);
             System.out.println("Opcion 2 OFF");
         }
         else//AUTO
         {
             Button mButton=(Button)findViewById(R.id.button_o2);
-            mButton.setText("AUTO");
-            mButton.setBackgroundColor(0xFF00BFFF);
+            //mButton.setText("AUTO");
+            //mButton.setBackgroundColor(0xFF00BFFF);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.ventiladora);
+            mButton.setBackground(drawable);
             System.out.println("Opcion 2 AUTO");
         }
     }
