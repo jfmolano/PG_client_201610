@@ -49,6 +49,9 @@ public class MainActivity extends ActionBarActivity {
     private HttpRequestHandler hand;
     public int opcion1;
     public int opcion2;
+    public int opcion3;
+    public int opcion4;
+    public int opcion5;
     MainActivity esta;
 
     @Override
@@ -58,6 +61,9 @@ public class MainActivity extends ActionBarActivity {
         esta = this;
         opcion1 = 0;
         opcion2 = 0;
+        opcion3 = 0;
+        opcion4 = 0;
+        opcion5 = 0;
 
         MyReceiver receiver = new MyReceiver(new Handler()); // Create the receiver
         registerReceiver(receiver, new IntentFilter("some.action")); // Register receiver
@@ -106,22 +112,25 @@ public class MainActivity extends ActionBarActivity {
         if(opcion1==1)//ON
         {
             Button mButton=(Button)findViewById(R.id.button_o1);
-            mButton.setText("ON");
-            mButton.setBackgroundColor(0xFF00FF00);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luzv);
+            mButton.setBackground(drawable);
             System.out.println("Opcion 1 ON");
         }
         else if(opcion1==2)//OFF
         {
             Button mButton=(Button)findViewById(R.id.button_o1);
-            mButton.setText("OFF");
-            mButton.setBackgroundColor(0xFFFF0000);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luzr);
+            mButton.setBackground(drawable);
             System.out.println("Opcion 1 OFF");
         }
         else//AUTO
         {
             Button mButton=(Button)findViewById(R.id.button_o1);
-            mButton.setText("AUTO");
-            mButton.setBackgroundColor(0xFF00BFFF);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luza);
+            mButton.setBackground(drawable);
             System.out.println("Opcion 1 AUTO");
         }
     }
@@ -160,6 +169,117 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.ventiladora);
             mButton.setBackground(drawable);
             System.out.println("Opcion 2 AUTO");
+        }
+    }
+
+    public void op3(View view) {
+        if(opcion3==3)
+        {
+            opcion3=0;
+        }
+        opcion3++;
+        if(opcion3==1)//ON
+        {
+            Button mButton=(Button)findViewById(R.id.button_o3);
+            //mButton.setText("ON");
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luzv);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 3 ON");
+        }
+        else if(opcion3==2)//OFF
+        {
+            Button mButton=(Button)findViewById(R.id.button_o3);
+            //mButton.setText("OFF");
+            //mButton.setBackgroundColor(0xFFFF0000);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luzr);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 3 OFF");
+        }
+        else//AUTO
+        {
+            Button mButton=(Button)findViewById(R.id.button_o3);
+            //mButton.setText("AUTO");
+            //mButton.setBackgroundColor(0xFF00BFFF);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luza);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 3 AUTO");
+        }
+    }
+
+    public void op4(View view) {
+        if(opcion4==3)
+        {
+            opcion4=0;
+        }
+        opcion4++;
+        if(opcion4==1)//ON
+        {
+            Button mButton=(Button)findViewById(R.id.button_o4);
+            //mButton.setText("ON");
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.hornov);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 4 ON");
+        }
+        else if(opcion4==2)//OFF
+        {
+            Button mButton=(Button)findViewById(R.id.button_o4);
+            //mButton.setText("OFF");
+            //mButton.setBackgroundColor(0xFFFF0000);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.hornor);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 4 OFF");
+        }
+        else//AUTO
+        {
+            Button mButton=(Button)findViewById(R.id.button_o4);
+            //mButton.setText("AUTO");
+            //mButton.setBackgroundColor(0xFF00BFFF);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.hornoa);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 4 AUTO");
+        }
+    }
+
+    public void op5(View view) {
+        if(opcion5==3)
+        {
+            opcion5=0;
+        }
+        opcion5++;
+        if(opcion5==1)//ON
+        {
+            Button mButton=(Button)findViewById(R.id.button_o5);
+            //mButton.setText("ON");
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.lavadorav);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 5 ON");
+        }
+        else if(opcion5==2)//OFF
+        {
+            Button mButton=(Button)findViewById(R.id.button_o5);
+            //mButton.setText("OFF");
+            //mButton.setBackgroundColor(0xFFFF0000);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.lavadorar);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 5 OFF");
+        }
+        else//AUTO
+        {
+            Button mButton=(Button)findViewById(R.id.button_o5);
+            //mButton.setText("AUTO");
+            //mButton.setBackgroundColor(0xFF00BFFF);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.lavadorav);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 5 AUTO");
         }
     }
 

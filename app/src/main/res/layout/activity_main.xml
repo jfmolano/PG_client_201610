@@ -43,7 +43,31 @@
             android:layout_width="48dp"
             android:layout_marginTop="118dp"
             android:layout_marginLeft="230dp"
-            android:background="@drawable/ventiladorr"
+            android:background="@drawable/luza"
             android:onClick="op1" />
+        <Button
+            android:id="@+id/button_o3"
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:layout_marginTop="305dp"
+            android:layout_marginLeft="199dp"
+            android:background="@drawable/luza"
+            android:onClick="op3" />
+        <Button
+            android:id="@+id/button_o4"
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:layout_marginTop="460dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/hornoa"
+            android:onClick="op4" />
+        <Button
+            android:id="@+id/button_o5"
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:layout_marginTop="390dp"
+            android:layout_marginLeft="168dp"
+            android:background="@drawable/lavadoraa"
+            android:onClick="op5" />
     </RelativeLayout>
 </LinearLayout>
