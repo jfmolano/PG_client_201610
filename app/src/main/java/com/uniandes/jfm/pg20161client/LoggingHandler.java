@@ -49,11 +49,15 @@ public class LoggingHandler implements HttpRequestHandler {
             String body = EntityUtils.toString(entity); //here you have the POST body
             System.out.println(body);
             try {
-                JSONObject j = new JSONObject(body);
-                String v = j.get("medida").toString();
-                System.out.println("Medida: " + v);
+                JSONObject j0 = new JSONObject(body);
+                String v0 = j0.get("notify").toString();
+                JSONObject j1 = new JSONObject(v0);
+                String v1 = j1.get("representation").toString();
+                JSONObject j2 = new JSONObject(v1);
+                String v2 = j2.get("$t").toString();
+                System.out.println("Medida: " + v2);
                 Intent i = new Intent("some.action");
-                i.putExtra("valor", v);
+                i.putExtra("valor", v2);
                 context.sendBroadcast(i);
                 //TextView lab = (TextView)((Activity)context).findViewById(R.id.medida1);
                 //lab.setText("Temp. Cocina: "+lab+"º");

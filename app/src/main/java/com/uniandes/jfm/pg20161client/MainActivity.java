@@ -109,6 +109,21 @@ public class MainActivity extends ActionBarActivity {
     public void servHTTP(View view){
         new Thread(new Runnable() {
             public void run() {
+                //Registrar
+                String json = "{\n" +
+                        "  \"subscription\": {\n" +
+                        "    \"contact\": \"http://"+ip+":8080\",\n" +
+                        "    \"filterCriteria\": {\n" +
+                        "      \"sizeUntil\": 30\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}";
+                String urlAdd = "/"+APP_ID+"/containers/cont1/contentInstances/subscriptions";
+                try {
+                    enviarHTTP(urlAdd,json);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println("Handler");
                 RegisterThread r = new RegisterThread(esta,ip);
                 r.startThread();
