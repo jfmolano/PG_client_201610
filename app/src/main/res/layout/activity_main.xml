@@ -69,5 +69,13 @@
             android:layout_marginLeft="168dp"
             android:background="@drawable/lavadoraa"
             android:onClick="op5" />
+        <Button
+            android:id="@+id/button_o6"
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:layout_marginTop="390dp"
+            android:layout_marginLeft="228dp"
+            android:background="@drawable/luza"
+            android:onClick="op6" />
     </RelativeLayout>
 </LinearLayout>

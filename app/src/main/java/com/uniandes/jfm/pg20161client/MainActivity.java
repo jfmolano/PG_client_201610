@@ -52,6 +52,7 @@ public class MainActivity extends ActionBarActivity {
     public int opcion3;
     public int opcion4;
     public int opcion5;
+    public int opcion6;
     MainActivity esta;
 
     @Override
@@ -64,6 +65,7 @@ public class MainActivity extends ActionBarActivity {
         opcion3 = 0;
         opcion4 = 0;
         opcion5 = 0;
+        opcion6 = 0;
 
         MyReceiver receiver = new MyReceiver(new Handler()); // Create the receiver
         registerReceiver(receiver, new IntentFilter("some.action")); // Register receiver
@@ -277,9 +279,46 @@ public class MainActivity extends ActionBarActivity {
             //mButton.setText("AUTO");
             //mButton.setBackgroundColor(0xFF00BFFF);
             Resources res = getResources();
-            Drawable drawable = res.getDrawable(R.drawable.lavadorav);
+            Drawable drawable = res.getDrawable(R.drawable.lavadoraa);
             mButton.setBackground(drawable);
             System.out.println("Opcion 5 AUTO");
+        }
+    }
+
+    public void op6(View view) {
+        if(opcion6==3)
+        {
+            opcion6=0;
+        }
+        opcion6++;
+        if(opcion6==1)//ON
+        {
+            Button mButton=(Button)findViewById(R.id.button_o6);
+            //mButton.setText("ON");
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luzv);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 6 ON");
+        }
+        else if(opcion6==2)//OFF
+        {
+            Button mButton=(Button)findViewById(R.id.button_o6);
+            //mButton.setText("OFF");
+            //mButton.setBackgroundColor(0xFFFF0000);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luzr);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 6 OFF");
+        }
+        else//AUTO
+        {
+            Button mButton=(Button)findViewById(R.id.button_o6);
+            //mButton.setText("AUTO");
+            //mButton.setBackgroundColor(0xFF00BFFF);
+            Resources res = getResources();
+            Drawable drawable = res.getDrawable(R.drawable.luza);
+            mButton.setBackground(drawable);
+            System.out.println("Opcion 6 AUTO");
         }
     }
 
