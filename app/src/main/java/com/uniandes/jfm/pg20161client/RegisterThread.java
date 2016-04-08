@@ -1,7 +1,10 @@
 package com.uniandes.jfm.pg20161client;
 
 import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.provider.SyncStateContract;
+import android.text.format.Formatter;
 
 import org.apache.http.impl.DefaultConnectionReuseStrategy;
 import org.apache.http.impl.DefaultHttpResponseFactory;
@@ -32,8 +35,8 @@ public class RegisterThread extends Thread {
     private HttpService httpService = null;
     private HttpRequestHandlerRegistry registry = null;
 
-    public RegisterThread(Context context) {
-        super("192.168.0.21");
+    public RegisterThread(Context context,String ip) {
+        super(ip);
 
         httpproc = new BasicHttpProcessor();
         httpContext = new BasicHttpContext();

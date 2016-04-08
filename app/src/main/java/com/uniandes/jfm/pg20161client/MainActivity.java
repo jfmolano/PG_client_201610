@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +56,7 @@ public class MainActivity extends ActionBarActivity {
     public int opcion4;
     public int opcion5;
     public int opcion6;
+    public String ip;
     MainActivity esta;
 
     @Override
@@ -66,7 +70,11 @@ public class MainActivity extends ActionBarActivity {
         opcion4 = 0;
         opcion5 = 0;
         opcion6 = 0;
-
+        WifiManager mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
+        ip = Formatter.formatIpAddress(mWifiInfo.getIpAddress());
+        System.out.println("- - - - - - - - IP: - - - - - - - - -");
+        System.out.println(ip);
         MyReceiver receiver = new MyReceiver(new Handler()); // Create the receiver
         registerReceiver(receiver, new IntentFilter("some.action")); // Register receiver
 
@@ -87,6 +95,8 @@ public class MainActivity extends ActionBarActivity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
+                    System.out.println("Recibiendo...");
+                    System.out.println(intent.getStringExtra("valor"));
                     //TextView lab=(TextView)findViewById(R.id.medida1);
                     //lab.setText("Temp. Cocina: "+intent.getStringExtra("valor")+"º");
                     //Toast.makeText(context, "Toast from broadcast receiver"+intent.getStringExtra("valor"), Toast.LENGTH_SHORT).show();
@@ -99,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             public void run() {
                 System.out.println("Handler");
-                RegisterThread r = new RegisterThread(esta);
+                RegisterThread r = new RegisterThread(esta,ip);
                 r.startThread();
             }
         }).start();
