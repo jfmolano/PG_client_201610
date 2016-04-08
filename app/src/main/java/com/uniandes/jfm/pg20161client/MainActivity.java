@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,10 +47,10 @@ appId = "user"
 
 public class MainActivity extends ActionBarActivity {
 
-    public final static String URL_MTC = "192.168.0.30";
     public final static String PUERTO_MTC = "4000";
     public final static String APP_ID = "user04";
     private HttpRequestHandler hand;
+    public String url_mtc;
     public int opcion1;
     public int opcion2;
     public int opcion3;
@@ -441,7 +442,9 @@ public class MainActivity extends ActionBarActivity {
 
     public void enviarHTTP(String urlFin, String jsonMandar) throws Exception{
         //Crea URL
-        String url = "http://"+URL_MTC+":"+PUERTO_MTC+"/m2m/applications"+urlFin;
+        EditText mEditTIPMTC=(EditText)findViewById(R.id.mtc_ip_input);
+        url_mtc = mEditTIPMTC.getText().toString();
+        String url = "http://"+url_mtc+":"+PUERTO_MTC+"/m2m/applications"+urlFin;
         System.out.println("URL: " + url);
         URL object = new URL(url);
         //Crea Conexion
