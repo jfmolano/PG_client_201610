@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import org.apache.http.localserver.LocalTestServer;
 import org.apache.http.protocol.HttpRequestHandler;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -71,6 +73,8 @@ public class MainActivity extends ActionBarActivity {
         opcion4 = 0;
         opcion5 = 0;
         opcion6 = 0;
+        EditText mEditTIPMTC=(EditText)findViewById(R.id.mtc_ip_input);
+        mEditTIPMTC.setText("157.253.205.40");
         WifiManager mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
         ip = Formatter.formatIpAddress(mWifiInfo.getIpAddress());
@@ -97,7 +101,26 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void run() {
                     System.out.println("Recibiendo...");
-                    System.out.println(intent.getStringExtra("valor"));
+                    String dato = intent.getStringExtra("valor");
+                    System.out.println(dato);
+                    byte[] valueDecoded= Base64.decode(dato, Base64.DEFAULT);
+                    System.out.println("Decodificado...");
+                    String datoDeco = new String(valueDecoded);
+                    System.out.println(datoDeco);
+                    System.out.println("Decodificado2...");
+                    String datoDeco2 = datoDeco.split("binaryContent")[1];
+                    System.out.println(datoDeco2);
+                    System.out.println("Decodificado3...");
+                    String datoDeco3 = datoDeco2.split("\":\"")[1];
+                    System.out.println(datoDeco3);
+                    System.out.println("Decodificado4...");
+                    String datoDeco4 = datoDeco3.split("\",\"")[0];
+                    System.out.println(datoDeco4);
+                    System.out.println("Decodificado5...");
+                    byte[] valueDecoded2= Base64.decode(datoDeco4, Base64.DEFAULT);
+                    String datoDeco5 = new String(valueDecoded2);
+                    System.out.println(datoDeco5);
+
                     //TextView lab=(TextView)findViewById(R.id.medida1);
                     //lab.setText("Temp. Cocina: "+intent.getStringExtra("valor")+"º");
                     //Toast.makeText(context, "Toast from broadcast receiver"+intent.getStringExtra("valor"), Toast.LENGTH_SHORT).show();
