@@ -50,7 +50,7 @@ appId = "user"
 public class MainActivity extends ActionBarActivity {
 
     public final static String PUERTO_MTC = "4000";
-    public final static String APP_ID = "user04";
+    public final static String APP_ID = "user";
     private HttpRequestHandler hand;
     public String url_mtc;
     public int opcion1;
@@ -173,7 +173,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luzv);
             mButton.setBackground(drawable);
             System.out.println("Opcion 1 ON");
-            pushDato("1-ON");
+            pushDato("onLamp");
         }
         else if(opcion1==2)//OFF
         {
@@ -182,7 +182,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luzr);
             mButton.setBackground(drawable);
             System.out.println("Opcion 1 OFF");
-            pushDato("1-OFF");
+            pushDato("offLamp");
         }
         else//AUTO
         {
@@ -191,7 +191,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luza);
             mButton.setBackground(drawable);
             System.out.println("Opcion 1 AUTO");
-            pushDato("1-AUTO");
+            //pushDato("1-AUTO");
         }
     }
 
@@ -209,6 +209,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.ventiladorv);
             mButton.setBackground(drawable);
             System.out.println("Opcion 2 ON");
+            pushDato("onFan");
         }
         else if(opcion2==2)//OFF
         {
@@ -219,6 +220,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.ventiladorr);
             mButton.setBackground(drawable);
             System.out.println("Opcion 2 OFF");
+            pushDato("offFan");
         }
         else//AUTO
         {
@@ -283,6 +285,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.hornov);
             mButton.setBackground(drawable);
             System.out.println("Opcion 4 ON");
+            pushDato("onMicrowave");
         }
         else if(opcion4==2)//OFF
         {
@@ -293,6 +296,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.hornor);
             mButton.setBackground(drawable);
             System.out.println("Opcion 4 OFF");
+            pushDato("offMicrowave");
         }
         else//AUTO
         {
@@ -320,6 +324,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.lavadorav);
             mButton.setBackground(drawable);
             System.out.println("Opcion 5 ON");
+            pushDato("onWM");
         }
         else if(opcion5==2)//OFF
         {
@@ -330,6 +335,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.lavadorar);
             mButton.setBackground(drawable);
             System.out.println("Opcion 5 OFF");
+            pushDato("offWM");
         }
         else//AUTO
         {

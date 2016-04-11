@@ -39,7 +39,7 @@
             android:id="@+id/button_o2"
             android:layout_height="48dp"
             android:layout_width="48dp"
-            android:layout_marginTop="118dp"
+            android:layout_marginTop="112dp"
             android:layout_marginLeft="285dp"
             android:background="@drawable/ventiladora"
             android:onClick="op2" />
@@ -47,7 +47,7 @@
             android:id="@+id/button_o1"
             android:layout_height="48dp"
             android:layout_width="48dp"
-            android:layout_marginTop="118dp"
+            android:layout_marginTop="112dp"
             android:layout_marginLeft="230dp"
             android:background="@drawable/luza"
             android:onClick="op1" />
@@ -55,7 +55,7 @@
             android:id="@+id/button_o3"
             android:layout_height="48dp"
             android:layout_width="48dp"
-            android:layout_marginTop="305dp"
+            android:layout_marginTop="287dp"
             android:layout_marginLeft="199dp"
             android:background="@drawable/luza"
             android:onClick="op3" />
@@ -63,7 +63,7 @@
             android:id="@+id/button_o4"
             android:layout_height="48dp"
             android:layout_width="48dp"
-            android:layout_marginTop="460dp"
+            android:layout_marginTop="436dp"
             android:layout_marginLeft="25dp"
             android:background="@drawable/hornoa"
             android:onClick="op4" />
@@ -71,7 +71,7 @@
             android:id="@+id/button_o5"
             android:layout_height="48dp"
             android:layout_width="48dp"
-            android:layout_marginTop="390dp"
+            android:layout_marginTop="370dp"
             android:layout_marginLeft="168dp"
             android:background="@drawable/lavadoraa"
             android:onClick="op5" />
@@ -79,7 +79,7 @@
             android:id="@+id/button_o6"
             android:layout_height="48dp"
             android:layout_width="48dp"
-            android:layout_marginTop="390dp"
+            android:layout_marginTop="370dp"
             android:layout_marginLeft="228dp"
             android:background="@drawable/luza"
             android:onClick="op6" />
