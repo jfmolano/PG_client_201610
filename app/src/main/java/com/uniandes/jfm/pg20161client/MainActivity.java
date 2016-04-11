@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -128,8 +129,66 @@ public class MainActivity extends ActionBarActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    TextView lab=(TextView)findViewById(R.id.sensorLamp1);
-                    lab.setText("Temp. Cocina: " + valor + "º");
+                    if(valor.equals("onLamp"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorLamp1);
+                        lab.setText("Lámpara 1 ON");
+                        lab.setTextColor(Color.rgb(0, 255, 0));
+                    }
+                    else if(valor.equals("offLamp"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorLamp1);
+                        lab.setText("Lámpara 1 OFF");
+                        lab.setTextColor(Color.rgb(255, 0, 0));
+                    }
+                    else if(valor.equals("onFan"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorFan);
+                        lab.setText("Ventilador ON");
+                        lab.setTextColor(Color.rgb(0, 255, 0));
+                    }
+                    else if(valor.equals("offFan"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorFan);
+                        lab.setText("Ventilador OFF");
+                        lab.setTextColor(Color.rgb(255, 0, 0));
+                    }
+                    else if(valor.equals("onMicrowave"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorHorno);
+                        lab.setText("Horno ON");
+                        lab.setTextColor(Color.rgb(0, 255, 0));
+                    }
+                    else if(valor.equals("offMicrowave"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorHorno);
+                        lab.setText("Horno OFF");
+                        lab.setTextColor(Color.rgb(255, 0, 0));
+                    }
+                    else if(valor.equals("onWM"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorWM);
+                        lab.setText("Lavadora ON");
+                        lab.setTextColor(Color.rgb(0, 255, 0));
+                    }
+                    else if(valor.equals("offWM"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorWM);
+                        lab.setText("Horno OFF");
+                        lab.setTextColor(Color.rgb(255, 0, 0));
+                    }
+                    else if(valor.equals("onFF"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorLamp2);
+                        lab.setText("Lámpara 2 ON");
+                        lab.setTextColor(Color.rgb(0, 255, 0));
+                    }
+                    else if(valor.equals("offFF"))
+                    {
+                        TextView lab=(TextView)findViewById(R.id.sensorLamp2);
+                        lab.setText("Lámpara 2 OFF");
+                        lab.setTextColor(Color.rgb(255, 0, 0));
+                    }
                 }
             });
         }
@@ -248,6 +307,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luzv);
             mButton.setBackground(drawable);
             System.out.println("Opcion 3 ON");
+            pushDato("onFF");
         }
         else if(opcion3==2)//OFF
         {
@@ -258,6 +318,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luzr);
             mButton.setBackground(drawable);
             System.out.println("Opcion 3 OFF");
+            pushDato("offFF");
         }
         else//AUTO
         {
