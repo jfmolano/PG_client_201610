@@ -153,13 +153,13 @@ public class MainActivity extends ActionBarActivity {
                         lab.setText("Ventilador OFF");
                         lab.setTextColor(Color.rgb(255, 0, 0));
                     }
-                    else if(valor.equals("onMicrowave"))
+                    else if(valor.equals("onMW"))
                     {
                         TextView lab=(TextView)findViewById(R.id.sensorHorno);
                         lab.setText("Horno ON");
                         lab.setTextColor(Color.rgb(0, 255, 0));
                     }
-                    else if(valor.equals("offMicrowave"))
+                    else if(valor.equals("offMW"))
                     {
                         TextView lab=(TextView)findViewById(R.id.sensorHorno);
                         lab.setText("Horno OFF");
@@ -174,7 +174,7 @@ public class MainActivity extends ActionBarActivity {
                     else if(valor.equals("offWM"))
                     {
                         TextView lab=(TextView)findViewById(R.id.sensorWM);
-                        lab.setText("Horno OFF");
+                        lab.setText("Lavadora OFF");
                         lab.setTextColor(Color.rgb(255, 0, 0));
                     }
                     else if(valor.equals("onFF"))
@@ -346,7 +346,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.hornov);
             mButton.setBackground(drawable);
             System.out.println("Opcion 4 ON");
-            pushDato("onMicrowave");
+            pushDato("onMW");
         }
         else if(opcion4==2)//OFF
         {
@@ -357,7 +357,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.hornor);
             mButton.setBackground(drawable);
             System.out.println("Opcion 4 OFF");
-            pushDato("offMicrowave");
+            pushDato("offMW");
         }
         else//AUTO
         {
