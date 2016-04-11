@@ -128,7 +128,7 @@ public class MainActivity extends ActionBarActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    TextView lab=(TextView)findViewById(R.id.sensor1);
+                    TextView lab=(TextView)findViewById(R.id.sensorLamp1);
                     lab.setText("Temp. Cocina: " + valor + "º");
                 }
             });
