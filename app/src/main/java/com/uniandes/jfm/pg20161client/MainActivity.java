@@ -120,10 +120,16 @@ public class MainActivity extends ActionBarActivity {
                     byte[] valueDecoded2= Base64.decode(datoDeco4, Base64.DEFAULT);
                     String datoDeco5 = new String(valueDecoded2);
                     System.out.println(datoDeco5);
-
-                    //TextView lab=(TextView)findViewById(R.id.medida1);
-                    //lab.setText("Temp. Cocina: "+intent.getStringExtra("valor")+"º");
-                    //Toast.makeText(context, "Toast from broadcast receiver"+intent.getStringExtra("valor"), Toast.LENGTH_SHORT).show();
+                    String valor = "";
+                    try {
+                        JSONObject j = new JSONObject(datoDeco5);
+                        valor = j.getString("cmd");
+                        System.out.println("Valor cmd: "+valor);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    TextView lab=(TextView)findViewById(R.id.sensor1);
+                    lab.setText("Temp. Cocina: " + valor + "º");
                 }
             });
         }
@@ -167,6 +173,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luzv);
             mButton.setBackground(drawable);
             System.out.println("Opcion 1 ON");
+            pushDato("1-ON");
         }
         else if(opcion1==2)//OFF
         {
@@ -175,6 +182,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luzr);
             mButton.setBackground(drawable);
             System.out.println("Opcion 1 OFF");
+            pushDato("1-OFF");
         }
         else//AUTO
         {
@@ -183,6 +191,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luza);
             mButton.setBackground(drawable);
             System.out.println("Opcion 1 AUTO");
+            pushDato("1-AUTO");
         }
     }
 
@@ -380,6 +389,26 @@ public class MainActivity extends ActionBarActivity {
                 try {
                     //Push
                     String json = "{\"cmd\":\"1\"}";
+                    String urlAdd = "/"+APP_ID+"/containers/cont1/contentInstances";
+                    enviarHTTP(urlAdd,json);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.fillInStackTrace());
+                }
+            }
+        }).start();
+    }
+
+    public void pushDato(final String dato) {
+        System.out.println("- - - - - - - - BOTON - - - - - - - -");
+        //Registro
+        //new TareaRed().execute();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    //Push
+                    String json = "{\"cmd\":\""+dato+"\"}";
                     String urlAdd = "/"+APP_ID+"/containers/cont1/contentInstances";
                     enviarHTTP(urlAdd,json);
                 }

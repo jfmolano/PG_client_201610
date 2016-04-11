@@ -83,5 +83,11 @@
             android:layout_marginLeft="228dp"
             android:background="@drawable/luza"
             android:onClick="op6" />
+        <TextView android:id="@+id/sensor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="50dp"
+            android:text="Sensor 1" />
     </RelativeLayout>
 </LinearLayout>
