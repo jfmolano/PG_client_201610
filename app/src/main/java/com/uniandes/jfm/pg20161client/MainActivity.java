@@ -301,6 +301,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luza);
             mButton.setBackground(drawable);
             System.out.println("Opcion 1 AUTO");
+            pushDato("autoLP");
             //pushDato("1-AUTO");
         }
     }
@@ -380,6 +381,7 @@ public class MainActivity extends ActionBarActivity {
             Drawable drawable = res.getDrawable(R.drawable.luza);
             mButton.setBackground(drawable);
             System.out.println("Opcion 3 AUTO");
+            pushDato("autoFF");
         }
     }
 
