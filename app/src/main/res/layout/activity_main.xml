@@ -113,5 +113,23 @@
             android:layout_marginTop="70dp"
             android:layout_marginLeft="50dp"
             android:text="Lavadora AUTO" />
+        <TextView android:id="@+id/sensorTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="240dp"
+            android:text="Temperatura: " />
+        <TextView android:id="@+id/sensorLuz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="240dp"
+            android:text="Nivel de luz: " />
+        <TextView android:id="@+id/sensorPotenciometro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="240dp"
+            android:text="Sensor extra: " />
     </RelativeLayout>
 </LinearLayout>

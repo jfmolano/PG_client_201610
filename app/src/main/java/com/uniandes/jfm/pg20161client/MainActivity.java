@@ -52,6 +52,7 @@ public class MainActivity extends ActionBarActivity {
 
     public final static String PUERTO_MTC = "4000";
     public final static String APP_ID = "user";
+    public final static String SENSOR_APP_ID = "sensor";
     private HttpRequestHandler hand;
     public String url_mtc;
     public int opcion1;
@@ -129,65 +130,99 @@ public class MainActivity extends ActionBarActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    if(valor.equals("onLamp"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorLamp1);
-                        lab.setText("Lámpara 1 ON");
-                        lab.setTextColor(Color.rgb(0, 255, 0));
+                    // Ejemplo de linea READ-Microwave:on-Lamp:off-FirstFloor:off-Led4:off-WM:off-Fan:off-LI:81-PO:82-TE:22
+                    String [] arregloS = valor.split("-");
+                    if(arregloS.length==10){
+                        String hornoCmd = arregloS[1];
+                        String lampCmd = arregloS[2];
+                        String ffCmd = arregloS[3];
+                        String l4Cmd = arregloS[4];
+                        String lavadoraCmd = arregloS[5];
+                        String ventiladorCmd = arregloS[6];
+                        String luzCmd = arregloS[7];
+                        String potCmd = arregloS[8];
+                        String tempCmd = arregloS[9];
+
+                        if(lampCmd.equals("Lamp:on"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorLamp1);
+                            lab.setText("Lámpara 1 ON");
+                            lab.setTextColor(Color.rgb(0, 255, 0));
+                        }
+                        else if(lampCmd.equals("Lamp:off"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorLamp1);
+                            lab.setText("Lámpara 1 OFF");
+                            lab.setTextColor(Color.rgb(255, 0, 0));
+                        }
+
+                        if(ventiladorCmd.equals("Fan:on"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorFan);
+                            lab.setText("Ventilador ON");
+                            lab.setTextColor(Color.rgb(0, 255, 0));
+                        }
+                        else if(ventiladorCmd.equals("Fan:off"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorFan);
+                            lab.setText("Ventilador OFF");
+                            lab.setTextColor(Color.rgb(255, 0, 0));
+                        }
+
+                        if(hornoCmd.equals("Microwave:on"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorHorno);
+                            lab.setText("Horno ON");
+                            lab.setTextColor(Color.rgb(0, 255, 0));
+                        }
+                        else if(hornoCmd.equals("Microwave:off"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorHorno);
+                            lab.setText("Horno OFF");
+                            lab.setTextColor(Color.rgb(255, 0, 0));
+                        }
+
+                        if(lavadoraCmd.equals("WM:on"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorWM);
+                            lab.setText("Lavadora ON");
+                            lab.setTextColor(Color.rgb(0, 255, 0));
+                        }
+                        else if(lavadoraCmd.equals("WM:off"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorWM);
+                            lab.setText("Lavadora OFF");
+                            lab.setTextColor(Color.rgb(255, 0, 0));
+                        }
+
+                        if(ffCmd.equals("FirstFloor:on"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorLamp2);
+                            lab.setText("Lámpara 2 ON");
+                            lab.setTextColor(Color.rgb(0, 255, 0));
+                        }
+                        else if(ffCmd.equals("FirstFloor:off"))
+                        {
+                            TextView lab=(TextView)findViewById(R.id.sensorLamp2);
+                            lab.setText("Lámpara 2 OFF");
+                            lab.setTextColor(Color.rgb(255, 0, 0));
+                        }
+
+                        //Luz
+                        TextView lab=(TextView)findViewById(R.id.sensorLuz);
+                        String dato_r = luzCmd.split(":")[1];
+                        lab.setText("Nivel de luz: " + dato_r);
+
+                        lab=(TextView)findViewById(R.id.sensorPotenciometro);
+                        dato_r = potCmd.split(":")[1];
+                        lab.setText("Sensor extra: " + dato_r);
+
+                        lab=(TextView)findViewById(R.id.sensorTemp);
+                        dato_r = tempCmd.split(":")[1];
+                        lab.setText("Temperatura: "+dato_r);
                     }
-                    else if(valor.equals("offLamp"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorLamp1);
-                        lab.setText("Lámpara 1 OFF");
-                        lab.setTextColor(Color.rgb(255, 0, 0));
-                    }
-                    else if(valor.equals("onFan"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorFan);
-                        lab.setText("Ventilador ON");
-                        lab.setTextColor(Color.rgb(0, 255, 0));
-                    }
-                    else if(valor.equals("offFan"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorFan);
-                        lab.setText("Ventilador OFF");
-                        lab.setTextColor(Color.rgb(255, 0, 0));
-                    }
-                    else if(valor.equals("onMW"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorHorno);
-                        lab.setText("Horno ON");
-                        lab.setTextColor(Color.rgb(0, 255, 0));
-                    }
-                    else if(valor.equals("offMW"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorHorno);
-                        lab.setText("Horno OFF");
-                        lab.setTextColor(Color.rgb(255, 0, 0));
-                    }
-                    else if(valor.equals("onWM"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorWM);
-                        lab.setText("Lavadora ON");
-                        lab.setTextColor(Color.rgb(0, 255, 0));
-                    }
-                    else if(valor.equals("offWM"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorWM);
-                        lab.setText("Lavadora OFF");
-                        lab.setTextColor(Color.rgb(255, 0, 0));
-                    }
-                    else if(valor.equals("onFF"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorLamp2);
-                        lab.setText("Lámpara 2 ON");
-                        lab.setTextColor(Color.rgb(0, 255, 0));
-                    }
-                    else if(valor.equals("offFF"))
-                    {
-                        TextView lab=(TextView)findViewById(R.id.sensorLamp2);
-                        lab.setText("Lámpara 2 OFF");
-                        lab.setTextColor(Color.rgb(255, 0, 0));
+                    else{
+                        System.out.println("Otro comando: " + valor);
                     }
                 }
             });
@@ -198,6 +233,7 @@ public class MainActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             public void run() {
                 //Registrar
+                /*
                 String json = "{\n" +
                         "  \"subscription\": {\n" +
                         "    \"contact\": \"http://"+ip+":8080\",\n" +
@@ -209,6 +245,21 @@ public class MainActivity extends ActionBarActivity {
                 String urlAdd = "/"+APP_ID+"/containers/cont1/contentInstances/subscriptions";
                 try {
                     enviarHTTP(urlAdd,json);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }*/
+                //Registrar
+                String json2 = "{\n" +
+                        "  \"subscription\": {\n" +
+                        "    \"contact\": \"http://"+ip+":8080\",\n" +
+                        "    \"filterCriteria\": {\n" +
+                        "      \"sizeUntil\": 150\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}";
+                String urlAdd2 = "/"+SENSOR_APP_ID+"/containers/cont1/contentInstances/subscriptions";
+                try {
+                    enviarHTTP(urlAdd2,json2);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
