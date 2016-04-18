@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -132,7 +133,7 @@ public class MainActivity extends ActionBarActivity {
                     }
                     // Ejemplo de linea READ-Microwave:on-Lamp:off-FirstFloor:off-Led4:off-WM:off-Fan:off-LI:81-PO:82-TE:22
                     String [] arregloS = valor.split("-");
-                    if(arregloS.length==10){
+                    if(arregloS.length==11){
                         String hornoCmd = arregloS[1];
                         String lampCmd = arregloS[2];
                         String ffCmd = arregloS[3];
@@ -142,6 +143,7 @@ public class MainActivity extends ActionBarActivity {
                         String luzCmd = arregloS[7];
                         String potCmd = arregloS[8];
                         String tempCmd = arregloS[9];
+                        String puertaCmd = arregloS[10];
 
                         if(lampCmd.equals("Lamp:on"))
                         {
@@ -206,6 +208,17 @@ public class MainActivity extends ActionBarActivity {
                             TextView lab=(TextView)findViewById(R.id.sensorLamp2);
                             lab.setText("Lámpara 2 OFF");
                             lab.setTextColor(Color.rgb(255, 0, 0));
+                        }
+
+                        if(puertaCmd.equals("DOOR:op"))
+                        {
+                            ImageView lab=(ImageView)findViewById(R.id.imgPuerta);
+                            lab.setImageResource(R.drawable.puertaabierta);
+                        }
+                        else if(puertaCmd.equals("DOOR:cl"))
+                        {
+                            ImageView lab=(ImageView)findViewById(R.id.imgPuerta);
+                            lab.setImageResource(R.drawable.puertacerrada);
                         }
 
                         //Luz

@@ -83,6 +83,13 @@
             android:layout_marginLeft="228dp"
             android:background="@drawable/luza"
             android:onClick="op6" />
+        <ImageView
+            android:id="@+id/imgPuerta"
+            android:layout_height="96dp"
+            android:layout_width="96dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="180dp"
+            android:src="@drawable/puertacerrada" />
         <TextView android:id="@+id/sensorLamp1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
